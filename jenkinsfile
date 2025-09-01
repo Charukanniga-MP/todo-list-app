@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Dharshini-2627/Personalnoteshandler.git'
+                git branch: 'main', url: 'https://github.com/Charukanniga-MP/todo-list-app.git'
             }
         }
 
