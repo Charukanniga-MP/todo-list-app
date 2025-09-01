@@ -1,39 +1,33 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'Default'  // Make sure you configured NodeJS plugin with this name
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Charukanniga-MP/todo-list-app.git'
+                git branch: 'main', url: 'https://github.com/Dharshini-2627/Personalnoteshandler.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                dir('dict') { // replace 'dict' with your React project folder
-                    // Use direct path to Node.js installed on Windows
-                    bat '"C:\\Program Files\\nodejs\\npm.cmd" install'
-                }
+                bat 'npm install'
             }
         }
 
         stage('Build') {
             steps {
-                dir('dict') {
-                    bat '"C:\\Program Files\\nodejs\\npm.cmd" run build'
-                }
+                bat 'npm run build'
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: 'dist/**', fingerprint: true
             }
         }
     }
-
-    post {
-        success {
-            echo "React project built successfully!"
-        }
-        failure {
-            echo "Build failed!"
-        }
-    }
 }
-
-
