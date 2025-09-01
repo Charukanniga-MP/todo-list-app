@@ -1,33 +1,30 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'Default'  // Make sure you configured NodeJS plugin with this name
-    }
-
     stages {
-        stage('Checkout') {
+        stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/Charukanniga-MP/todo-list-app.git'
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                bat 'npm install'
+                git 'https://github.com/Charukanniga-MP/todo-list-app.git'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'npm run build'
+                echo 'Building the project...'
             }
         }
 
-        stage('Archive') {
+        stage('Test') {
             steps {
-                archiveArtifacts artifacts: 'dist/**', fingerprint: true
+                echo 'Running tests...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application...'
             }
         }
     }
 }
+a
