@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Sathya-1307/Dictionary-System.git'
+                git branch: 'main', url: 'https://github.com/Charukanniga-MP/todo-list-app.git'
             }
         }
 
